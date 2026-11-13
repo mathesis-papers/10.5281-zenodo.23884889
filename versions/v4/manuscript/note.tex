@@ -1,0 +1,384 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\bin}[2]{\binom{#1}{#2}}
+\title{Proof of Mathar's conjecture on OEIS A027182:\\
+a closed form and the six-term recurrence}
+\author{Haobo Ma\thanks{ChronoAI Pte Ltd, Singapore.}\and
+Wenlin Zhang\thanks{National University of Singapore; ChronoAI Pte Ltd, Singapore.}}
+\date{1 November 2026}
+\hypersetup{pdftitle={Proof of Mathar's conjecture on OEIS A027182: a closed form and the six-term recurrence},
+pdfauthor={Haobo Ma; Wenlin Zhang},pdfsubject={CC BY 4.0}}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the recurrence for A027182 stated as a conjecture by R.\ J.\ Mathar
+(OEIS A027182, FORMULA section, 6 May 2026) for all $n\geq6$, by evaluating
+the middle coefficient of the square of each A027170 row polynomial.
+Row symmetry reduces the convolution to five binomial sums, and a shifted
+second-order recurrence gives the six-term recurrence. The same
+central-binomial identity proves Mathar's conjectured recurrences for
+A027171, A027174 and A027175; a parity decomposition also proves his
+seven-term recurrence for the half-row sums A027179.
+\end{abstract}
+
+Clark Kimberling's sequence A027182 is defined from the row polynomials
+of A027170. Mathar conjectured a polynomial-coefficient recurrence for
+it on 6 May 2026~\cite{A027182}. We prove that recurrence by first
+evaluating the convolution explicitly. General algorithms for deriving
+recurrences of binomial sums are developed by Bostan, Lairez and
+Salvy~\cite[Introduction and \S4]{BLS}; here the row symmetry permits
+a direct evaluation by the binomial theorem.
+The related closed forms of Christian Krause in A027171, A027174 and
+A027175~\cite{A027171,A027174,A027175} reduce three further conjectures of
+Mathar, also dated 6 May 2026, to the same central-binomial identity.
+The half-row conjecture in A027179~\cite{A027179} follows after separating
+even and odd rows. We give those deductions below, crediting the recorded
+closed forms separately from the recurrence proofs.
+
+For integers $n\geq0$ and $0\leq k\leq n$, follow A027170~\cite{A027170}
+and set
+\begin{align*}
+t(n,k)&=\bin{n+2}{k+1}+\bin{n+1}{k}+\bin{n+1}{k+1}+\bin nk,\\
+T(n,k)&=t(n,k)-t(0,0)+1=t(n,k)-4,\\
+g_n(x)&=\sum_{k=0}^n T(n,k)x^k,\qquad a_n=[x^n]g_n(x)^2.
+\end{align*}
+Here $[x^n]$ denotes coefficient extraction. The original A027182
+indexing starts at $n=1$; the same definition gives $a_0=1$.
+
+\begin{theorem}\label{thm:main}
+For every integer $n\geq0$,
+\begin{equation}\label{eq:closed}
+a_n=4\bin{2n+4}{n+2}+4\bin{2n+2}{n+1}+\bin{2n}{n}
+       -72\cdot2^n+16n+40.
+\end{equation}
+Consequently, for every integer $n\geq6$,
+\begin{equation}\label{eq:rec}
+\begin{aligned}
+0={}&2(n+2)a_n-(17n+23)a_{n-1}+(47n+36)a_{n-2}\\
+ &-2(22n+17)a_{n-3}+4(20-n)a_{n-4}\\
+ &+8(2n-9)a_{n-5}+24(12n-47).
+\end{aligned}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Put $A_k=\bin{n+2}{k+1}$ and $B_k=\bin nk$. Pascal's identity gives
+$T(n,k)=2A_k+B_k-4$. Since $A_{n-k}=A_k$ and $B_{n-k}=B_k$,
+the row is symmetric. Hence
+\[
+a_n=\sum_{k=0}^n T(n,k)T(n,n-k)=\sum_{k=0}^n(2A_k+B_k-4)^2.
+\]
+The required sums, all with $0\leq k\leq n$, are
+\begin{align*}
+\sum A_k^2&=\bin{2n+4}{n+2}-2,&
+\sum A_kB_k&=\bin{2n+2}{n+1},&
+\sum B_k^2&=\bin{2n}{n},\\
+\sum A_k&=2^{n+2}-2,&\sum B_k&=2^n.
+\end{align*}
+For completeness, coefficient extraction from
+$(1+x)^r(1+x)^s=(1+x)^{r+s}$ gives
+$\sum_j\bin rj\bin s{q-j}=\bin{r+s}q$.
+Taking $(r,s,q)=(n+2,n+2,n+2)$ gives the first squared sum after
+removing its two endpoint terms. Taking $(r,s,q)=(n+2,n,n+1)$
+and using $\bin nk=\bin n{n-k}$ gives the mixed sum; its omitted
+$j=0$ term is zero. Taking $(r,s,q)=(n,n,n)$ gives the remaining
+squared sum. The two ordinary sums follow by putting $x=1$ in the
+binomial theorem, with two endpoint terms removed for $A_k$.
+Expanding the square now gives
+\[
+a_n=4\sum A_k^2+4\sum A_kB_k+\sum B_k^2
+       -16\sum A_k-8\sum B_k+16(n+1),
+\]
+which is exactly~\eqref{eq:closed}.
+
+We next derive~\eqref{eq:rec}, keeping the variable coefficients inside
+each shift. Write
+\[
+c_m=\bin{2m}m,\qquad h_m=4c_{m+2}+4c_{m+1}+c_m,
+\qquad p_m=16m+40.
+\]
+For any sequence $f$, define
+\[
+(Bf)_m=2(m+4)f_{m+2}-(7m+27)f_{m+1}-(4m+2)f_m.
+\]
+The factorial definition of $c_m$ implies
+$R_m:=(m+1)c_{m+1}-2(2m+1)c_m=0$.
+Expanding coefficients of $c_m,\ldots,c_{m+4}$ yields
+\[
+(Bh)_m=8R_{m+3}+12R_{m+2}+6R_{m+1}+R_m=0.
+\]
+Let $(Ef)_m=f_{m+1}$ and $Q(E)=E^3-5E^2+8E-4=(E-1)(E-2)^2$.
+Define $L=Q(E)B$, meaning that $E$ shifts the entire sequence $Bf$.
+Expansion gives
+\begin{equation}\label{eq:L}
+\begin{aligned}
+(Lf)_m={}&2(m+7)f_{m+5}-(17m+108)f_{m+4}\\
+ &+(47m+271)f_{m+3}-(44m+254)f_{m+2}\\
+ &+(60-4m)f_{m+1}+(16m+8)f_m.
+\end{aligned}
+\end{equation}
+In particular $Lh=0$. Direct substitution gives
+\[
+(B(2^{\bullet}))_m=(-10m-24)2^m,\qquad
+(Bp)_m=-144m^2-744m-1016.
+\]
+The factor $(E-2)^2$ kills every sequence $(\alpha m+\beta)2^m$.
+For a quadratic $u_m=\alpha m^2+\beta m+\gamma$, expansion gives
+$(Q(E)u)_m=2\alpha m+\beta-3\alpha$.
+Consequently,
+\[
+L(2^{\bullet})=0,\qquad (Lp)_m=-288m-312=-24(12m+13).
+\]
+Equation~\eqref{eq:closed} says $a_m=h_m-72\cdot2^m+p_m$.
+Linearity therefore gives $(La)_m+24(12m+13)=0$ for every $m\geq0$.
+Putting $m=n-5$ in~\eqref{eq:L} proves~\eqref{eq:rec} for $n\geq6$.
+\end{proof}
+
+\paragraph{Initial values and source convention.}
+The definition gives
+\[
+(a_0,a_1,a_2,a_3,a_4)=(1,18,150,820,3726).
+\]
+The example in A027182 prints a final value of $120$ for
+$5^2+10^2+5^2$; the sum is $150$, agreeing with the entry's term list
+and with~\eqref{eq:closed}. With the extension $a_0=1$, the same
+recurrence also holds at $n=5$.
+
+\section*{Four companion conjectures}
+
+The following corollaries prove the statements labeled ``Conjecture'' in
+the FORMULA sections of A027171, A027174, A027175 and A027179, each
+attributed there to R.\ J.\ Mathar on 6 May 2026.
+
+\begin{corollary}\label{cor:middle}
+Let $u_n=T(2n,n)$ for $n\geq0$ (A027171), and
+$v_n=T(2n-1,n-1)$ for $n\geq1$ (A027175). Then
+\begin{equation}\label{eq:middle}
+2(n+1)f_n-(7n+5)f_{n-1}+2(3-2n)f_{n-2}+12(1-3n)=0
+\end{equation}
+holds for $f=u$, $n\geq2$, and for $f=v$, $n\geq3$.
+\end{corollary}
+
+\begin{proof}
+Krause's formulas~\cite{A027171,A027175}, dated 10 and 11 May 2026,
+respectively, follow immediately from the definition of $T$ and give
+\[
+u_n=d_n-4,\qquad v_n=\tfrac12d_n-4,\qquad
+d_n=2c_{n+1}+c_n=\frac{9n+5}{n+1}c_n.
+\]
+For the second formula, use
+$\bin{2n+1}{n}=(2n+1)c_n/(n+1)$ and
+$\bin{2n-1}{n-1}=c_n/2$.
+In terms of the already established $R_m=0$, expansion gives
+\[
+2(n+1)d_n-(7n+5)d_{n-1}+2(3-2n)d_{n-2}
+=4R_n+4R_{n-1}+R_{n-2}=0.
+\]
+The sum of the three coefficients on the left is $3-9n$.
+Subtracting $4$ therefore contributes $36n-12$, which is canceled by
+$12(1-3n)$. The smallest indices in the statement keep all original
+sequence indices in their domains.
+\end{proof}
+
+\begin{corollary}\label{cor:near}
+For $z_n=T(2n,n-2)$, $n\geq2$ (A027174), and every $n\geq4$,
+\begin{equation}\label{eq:near}
+\begin{aligned}
+0={}&-2(n+3)(139n-175)z_n
+ +(1279n^2+1334n-1089)z_{n-1}\\
+ &-2(167n+121)(2n-3)z_{n-2}+12(111n^2+456n+229).
+\end{aligned}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Krause's formula of 11 May 2026~\cite{A027174}, also immediate from $T$,
+can be written
+\[
+z_n=2\bin{2n+2}{n-1}+\bin{2n}{n-2}-4=r(n)c_n-4,
+\qquad r(n)=\frac{n(9n^2+14n+1)}{(n+1)(n+2)(n+3)}.
+\]
+Indeed, the ratios of the binomial coefficients themselves to $c_n$ are
+$2n(2n+1)/((n+2)(n+3))$ and $n(n-1)/((n+1)(n+2))$;
+the first has multiplier $2$ in $z_n$.
+Denote the three coefficients of $z_n,z_{n-1},z_{n-2}$ in
+\eqref{eq:near} by $q_0,q_1,q_2$. Since
+\[
+\frac{c_{n-1}}{c_n}=\frac{n}{2(2n-1)},\qquad
+\frac{c_{n-2}}{c_n}=\frac{n(n-1)}{4(2n-1)(2n-3)},
+\]
+the homogeneous part for $r(n)c_n$ vanishes by the polynomial identity
+\begin{equation}\label{eq:nearcert}
+\begin{aligned}
+0={}&-4n(2n-1)(139n-175)(9n^2+14n+1)\\
+ &+(n-1)(9n^2-4n-4)(1279n^2+1334n-1089)\\
+ &-(n-2)(n+2)(167n+121)(9n^2-22n+9).
+\end{aligned}
+\end{equation}
+More precisely, its left side is
+$2(n+1)(n+2)(2n-1)\sum_{j=0}^2q_j(n)r(n-j)c_{n-j}/c_n$;
+expanding the displayed products gives zero. All denominators are nonzero
+for $n\geq4$. Finally,
+$q_0+q_1+q_2=3(111n^2+456n+229)$, so the correction $-4$ supplies
+exactly the negative of the inhomogeneous term.
+\end{proof}
+
+\begin{corollary}\label{cor:half}
+For $b_n=\sum_{k=0}^{\lfloor n/2\rfloor}T(n,k)$, $n\geq0$ (A027179),
+put
+\begin{align*}
+p_0(n)&=-(n+2)(3n-20),&p_1(n)&=-(n+1)(3n-11),\\
+p_2(n)&=33n^2-180n-100,&p_3(n)&=15n^2-56n+1,\\
+p_4(n)&=2(-51n^2+313n-208),&p_5(n)&=-12(n-1)(n-4),\\
+p_6(n)&=8(9n-11)(n-5).
+\end{align*}
+Then Mathar's seven-term recurrence holds for every $n\geq6$:
+\begin{equation}\label{eq:half}
+\sum_{j=0}^6p_j(n)b_{n-j}+4(-24n^2+196n-365)=0.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Summing the two binomial terms in $T(n,k)$ gives
+\[
+S_n:=\sum_{k=0}^nT(n,k)
+=2(2^{n+2}-2)+2^n-4(n+1)=9\cdot2^n-4n-8.
+\]
+This is the row-sum formula recorded by Ralf Stephan in 2004 and proved
+by Krause in 2026 in A027178~\cite{A027178}.
+By row symmetry, the half-row sum is $S_n/2$ when $n$ is odd and
+$(S_n+T(n,n/2))/2$ when $n$ is even, as recorded by
+Mathar~\cite{A027179}. Define
+\[
+w_{2m}=d_m=\frac{9m+5}{m+1}c_m,\qquad w_{2m+1}=0\quad(m\geq0).
+\]
+In even rows, $T(2m,m)=d_m-4$.
+Since the indicator of even $n$ is $(1+(-1)^n)/2$, this gives the
+all-index closed form
+\begin{equation}\label{eq:halfclosed}
+b_n=\frac92\,2^n-2n-5-(-1)^n+\frac12w_n\qquad(n\geq0).
+\end{equation}
+Write $(\mathcal Pf)_n=\sum_{j=0}^6p_j(n)f_{n-j}$. Expanding the
+seven coefficients gives
+\begin{align*}
+\sum_{j=0}^6p_j(n)2^{-j}&=0,&
+\sum_{j=0}^6p_j(n)(-1)^j&=0,\\
+\sum_{j=0}^6p_j(n)(-2(n-j)-5)&=4(24n^2-196n+365).
+\end{align*}
+Thus it remains to check $\mathcal Pw=0$.
+For even $n\geq6$, only shifts $j=0,2,4,6$ contribute. Dividing by
+$c_{n/2}$ and using the ratio for consecutive central binomial
+coefficients gives
+\[
+\frac{(\mathcal Pw)_n}{c_{n/2}}=
+\frac{E(n)}{8(n-3)(n-1)},
+\]
+where the explicit certificate is
+\begin{equation}\label{eq:evencert}
+\begin{aligned}
+E(n)={}&-8(n-3)(n-1)(3n-20)(9n+10)\\
+ &+2(n-3)(9n-8)(33n^2-180n-100)\\
+ &-n(9n-26)(51n^2-313n+208)\\
+ &+n(n-2)(9n-44)(9n-11)=0.
+\end{aligned}
+\end{equation}
+For odd $n\geq7$, only shifts $j=1,3,5$ contribute, and similarly
+\[
+\frac{(\mathcal Pw)_n}{c_{(n-1)/2}}=\frac{O(n)}{4(n-2)},
+\]
+with
+\begin{equation}\label{eq:oddcert}
+\begin{aligned}
+O(n)={}&-4(n-2)(3n-11)(9n+1)\\
+ &+(9n-17)(15n^2-56n+1)-3(n-1)^2(9n-35)=0.
+\end{aligned}
+\end{equation}
+Both final equalities follow by expanding the displayed products.
+For clarity, all terms before clearing denominators can be recovered
+from
+\[
+\frac{w_{n-j}}{c_{(n-\epsilon)/2}}=
+\frac{9(n-j)+10}{n-j+2}
+\prod_{\ell=0}^{(j-\epsilon)/2-1}
+\frac{n-\epsilon-2\ell}{4(n-\epsilon-2\ell-1)},
+\quad j\equiv\epsilon\equiv n\pmod2,
+\]
+where an empty product is $1$. The other shifts give zero.
+There is no zero denominator in the stated ranges.
+Applying $\mathcal P$ to~\eqref{eq:halfclosed} now proves~\eqref{eq:half}.
+\end{proof}
+
+\paragraph{Verification and availability.}
+The argument above proves the identities for all stated indices.
+The accompanying Python check separately compares the defining convolution
+with~\eqref{eq:closed} through $n=400$, checks all five recurrences
+through $n=400$, and checks the displayed polynomial certificates exactly.
+These finite checks are separate from the all-index proofs above. The
+\href{https://github.com/the-omega-institute/trureturing/blob/494f471b70d9470db92b4dbc07a309d78ca59ec7/D5/S1/Recurrence/MatharA027182SelfConvolution.lean}{pinned file \texttt{MatharA027182SelfConvolution.lean}}
+(commit \texttt{494f471b70d9}) has the same $n\geq6$ statement as theorem
+\texttt{MatharA027182SelfConvolution.result}.
+The companion corollaries have the written proofs and exact arithmetic
+checks given here.
+
+\paragraph{License.}
+This note is licensed under the
+\href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International license (CC BY 4.0)}.
+
+\begin{thebibliography}{9}
+\bibitem{A027182}
+C. Kimberling, \emph{A027182: a(n) = self-convolution of row n of array
+T given by A027170}, The On-Line Encyclopedia of Integer Sequences,
+FORMULA section: R.\ J.\ Mathar's conjecture of 6 May 2026.
+\url{https://oeis.org/A027182}. Accessed 1 November 2026.
+
+\bibitem{A027170}
+C. Kimberling, \emph{A027170: Triangular array T read by rows
+(4-diamondization of Pascal's triangle)},
+The On-Line Encyclopedia of Integer Sequences.
+\url{https://oeis.org/A027170}. Accessed 1 November 2026.
+
+\bibitem{A027171}
+C. Kimberling, \emph{A027171: a(n) = A027170(2n, n)},
+The On-Line Encyclopedia of Integer Sequences,
+FORMULA section: Mathar's conjecture of 6 May 2026 and Krause's closed
+form of 10 May 2026. \url{https://oeis.org/A027171}.
+Accessed 1 November 2026.
+
+\bibitem{A027174}
+C. Kimberling, \emph{A027174: a(n) = A027170(2n, n-2)},
+The On-Line Encyclopedia of Integer Sequences,
+FORMULA section: Mathar's conjecture of 6 May 2026 and Krause's closed
+form of 11 May 2026. \url{https://oeis.org/A027174}.
+Accessed 1 November 2026.
+
+\bibitem{A027175}
+C. Kimberling, \emph{A027175: a(n) = A027170(2n-1, n-1)},
+The On-Line Encyclopedia of Integer Sequences,
+FORMULA section: Mathar's conjecture of 6 May 2026 and Krause's closed
+form of 11 May 2026. \url{https://oeis.org/A027175}.
+Accessed 1 November 2026.
+
+\bibitem{A027179}
+C. Kimberling, \emph{A027179: a(n) = T(n,0) + T(n,1) + ... + T(n,[ n/2 ]),
+T given by A027170}, The On-Line Encyclopedia of Integer Sequences,
+FORMULA section: Mathar's conjecture and parity formulas of 6 May 2026.
+\url{https://oeis.org/A027179}. Accessed 1 November 2026.
+
+\bibitem{A027178}
+C. Kimberling, \emph{A027178: a(n) = T(n,0) + T(n,1) + ... + T(n,n),
+T given by A027170}, The On-Line Encyclopedia of Integer Sequences,
+FORMULA section: Stephan's formula of 13 February 2004, with Krause's
+proof attribution of 14 May 2026.
+\url{https://oeis.org/A027178}. Accessed 1 November 2026.
+
+\bibitem{BLS}
+A. Bostan, P. Lairez and B. Salvy, \emph{Multiple binomial sums},
+Journal of Symbolic Computation \textbf{80}, part 2 (2017), 351--386.
+\href{https://doi.org/10.1016/j.jsc.2016.04.002}{doi:10.1016/j.jsc.2016.04.002}.
+Preprint: \href{https://arxiv.org/abs/1510.07487v2}{arXiv:1510.07487v2}.
+\end{thebibliography}
+\end{document}

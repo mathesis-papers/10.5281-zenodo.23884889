@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "note_id": "mathar-a027182-closed-form",
+  "revision": 4,
+  "source_access_date": "2026-11-01",
+  "authorship_status": "Creators and affiliations are listed in metadata.json and on the title page.",
+  "license_status": "Creative Commons Attribution 4.0 International (cc-by-4.0).",
+  "conjecture_author": "Richard J. Mathar",
+  "posing_locator": "FORMULA sections of OEIS A027182, A027171, A027174, A027175 and A027179; 6 May 2026",
+  "closed_form_attribution": {
+    "A027171": "Christian Krause, 10 May 2026",
+    "A027174": "Christian Krause, 11 May 2026",
+    "A027175": "Christian Krause, 11 May 2026",
+    "A027178_row_sum": "Ralf Stephan, 13 February 2004; proof attribution to Christian Krause, 14 May 2026",
+    "A027179_parity_relation": "Richard J. Mathar, 6 May 2026"
+  },
+  "written_proof_scope": {
+    "A027182_closed_form": "n >= 0",
+    "A027182_recurrence": "n >= 6 in the original sequence; also n = 5 with the explicitly defined extension a_0 = 1",
+    "A027171_recurrence": "n >= 2",
+    "A027174_recurrence": "n >= 4",
+    "A027175_recurrence": "n >= 3",
+    "A027179_closed_form": "n >= 0",
+    "A027179_recurrence": "n >= 6"
+  },
+  "upstream_lean_source": {
+    "repository": "the-omega-institute/trureturing",
+    "commit": "494f471b70d9470db92b4dbc07a309d78ca59ec7",
+    "path": "D5/S1/Recurrence/MatharA027182SelfConvolution.lean",
+    "git_blob_sha1": "0886772cbfb6e5558eec1f7fa4262afb246fcc37",
+    "declaration": "D5.S1.Recurrence.MatharA027182SelfConvolution.result",
+    "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/494f471b70d9470db92b4dbc07a309d78ca59ec7/D5/S1/Recurrence/MatharA027182SelfConvolution.lean",
+    "scope": "The declaration states the A027182 recurrence for n >= 6; the all-index written proof is Theorem 1 of note.tex.",
+    "companion_corollaries_included_in_lean_claim": false
+  },
+  "exact_computation": {
+    "program": "verify.py",
+    "dependencies": "Python 3 standard library",
+    "arithmetic": "arbitrary-precision integers and exact rational polynomial coefficients",
+    "maximum_index": 400,
+    "symbolic_identities": 12,
+    "scope": "Independent finite sequence checks and exact algebraic certificates; the complete all-index proofs are in note.tex."
+  },
+  "pdf_engine": "Tectonic 0.17.0",
+  "pdf_byte_reproducibility_claimed": false
+}

@@ -1,0 +1,15 @@
+{
+  "id": "mathar-a027182-closed-form",
+  "revision": 4,
+  "problem_ids": ["mathar-a027182", "mathar-a027171", "mathar-a027174", "mathar-a027175", "mathar-a027179"],
+  "topic": "Proofs of Mathar's A027182 self-convolution conjecture and four companion recurrence conjectures in the A027170 family",
+  "title": "Proof of Mathar's conjecture on OEIS A027182: a closed form and the six-term recurrence",
+  "creators": [
+    {"name": "Ma, Haobo", "affiliation": "ChronoAI Pte Ltd, Singapore", "orcid": "0009-0008-4944-977X"},
+    {"name": "Zhang, Wenlin", "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore", "orcid": "0009-0005-2414-7968"}
+  ],
+  "abstract": "We prove the recurrence for A027182 stated as a conjecture by R. J. Mathar (OEIS A027182, FORMULA section, 6 May 2026) for all n >= 6, by evaluating the middle coefficient of the square of each A027170 row polynomial. Row symmetry reduces the convolution to five binomial sums, and a shifted second-order recurrence gives the six-term recurrence. The same central-binomial identity proves Mathar's conjectured recurrences for A027171, A027174 and A027175; a parity decomposition also proves his seven-term recurrence for the half-row sums A027179.",
+  "summary": "A complete elementary proof of the A027182 conjecture, with corollaries proving the A027171, A027174, A027175 and A027179 conjectures from central-binomial identities and row symmetry.",
+  "license": "cc-by-4.0",
+  "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/494f471b70d9470db92b4dbc07a309d78ca59ec7/D5/S1/Recurrence/MatharA027182SelfConvolution.lean"
+}

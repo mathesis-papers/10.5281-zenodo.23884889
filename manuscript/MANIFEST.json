@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "members": [
+    {
+      "name": "README.md",
+      "bytes": 2871,
+      "sha256": "c8134f10f2ed903517d14792b05076cc23bfa7f62a883a28d0f65bed102184e0"
+    },
+    {
+      "name": "note.tex",
+      "bytes": 14435,
+      "sha256": "071324e2c1fef96061cfcad3fbd55de90938c8fd9f871643fc288530b64db1ec"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 1631,
+      "sha256": "8b4f559804b864db16d9fb814bdde6e7fcee13456f9acf655babe90f876d47ee"
+    },
+    {
+      "name": "provenance.json",
+      "bytes": 2356,
+      "sha256": "23e263d5510a574eb37e34637ae43f87070e6f235e2606c6f08a56e55222a6c6"
+    },
+    {
+      "name": "coverage.json",
+      "bytes": 2629,
+      "sha256": "a5c672be1c732a6f601b9ad70daefa17ac4f4d04a61073a73cb5109c99c4b563"
+    },
+    {
+      "name": "verify.py",
+      "bytes": 12953,
+      "sha256": "18bf7cc27a3e7cabada583f1eda55b9c284d1d3a35c459a3dfbb01cfa47ca14f"
+    },
+    {
+      "name": "verification.json",
+      "bytes": 2162,
+      "sha256": "663538a83f812d725899158fa887724942f94dc635b1c0b638ad9177267ab2c7"
+    },
+    {
+      "name": "sequence-prefixes.json",
+      "bytes": 2721,
+      "sha256": "6f8c6bcab2d355a7a02f0ab80213c3463cbdde18d6718a6942bb216b98577221"
+    },
+    {
+      "name": "b027182.txt",
+      "bytes": 317,
+      "sha256": "cb0394d4592a57fb75fae4a518b228c2ea7105444840e0024bc2bcd6ac421011"
+    }
+  ]
+}

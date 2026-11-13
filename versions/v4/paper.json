@@ -1,0 +1,64 @@
+{
+  "files": {
+    "pdf": {
+      "bytes": 84411,
+      "matches_public": null,
+      "path": "paper.pdf",
+      "public_sha256": null,
+      "sha256": "452af97384302ff222fac940759d321ec76bf44e80ddd4e1eca8e78b8bfcab38"
+    },
+    "source": {
+      "bytes": 16405,
+      "matches_public": null,
+      "path": "manuscript/",
+      "public_sha256": null,
+      "sha256": "a36826a45523cdafc39b1f2055e51130f9e6af99908175fa1fb01569ec53e0cf"
+    }
+  },
+  "source_identity": "Mathesis public projection",
+  "work": {
+    "abstract_text": "We prove the recurrence for A027182 stated as a conjecture by R. J. Mathar (OEIS A027182, FORMULA section, 6 May 2026) for all n >= 6, by evaluating the middle coefficient of the square of each A027170 row polynomial. Row symmetry reduces the convolution to five binomial sums, and a shifted second-order recurrence gives the six-term recurrence. The same central-binomial identity proves Mathar's conjectured recurrences for A027171, A027174 and A027175; a parity decomposition also proves his seven-term recurrence for the half-row sums A027179.",
+    "authors": [
+      {
+        "affiliation": "ChronoAI Pte Ltd, Singapore",
+        "name": "Haobo Ma",
+        "orcid": "0009-0008-4944-977X"
+      },
+      {
+        "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore",
+        "name": "Wenlin Zhang",
+        "orcid": "0009-0005-2414-7968"
+      }
+    ],
+    "concept_doi": "10.5281/zenodo.23884889",
+    "current_version": 4,
+    "doi": "10.5281/zenodo.23884890",
+    "lean_source": {
+      "revision": "494f471b70d9470db92b4dbc07a309d78ca59ec7",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/494f471b70d9470db92b4dbc07a309d78ca59ec7/D5/S1/Recurrence/MatharA027182SelfConvolution.lean"
+    },
+    "license": "CC-BY-4.0",
+    "msc": [],
+    "pdf": {
+      "url": "/api/v1/collected-papers/mathar-a027182-closed-form/files/pdf?version=4"
+    },
+    "previous_version": null,
+    "publication": "public",
+    "published_on": "2026-11-05T08:03:22.274949523Z",
+    "record": "mathar-a027182-closed-form",
+    "repository_name": "6aec384a07848d67879121d7",
+    "source": {
+      "url": "/api/v1/collected-papers/mathar-a027182-closed-form/files/source?version=4"
+    },
+    "title": "Proof of Mathar's conjecture on OEIS A027182: a closed form and the six-term recurrence",
+    "versions": [
+      {
+        "previous_version": null,
+        "published_on": "2026-11-05T08:03:22.274949523Z",
+        "revision": "4",
+        "version": 4
+      }
+    ],
+    "work": "mathar-a027182-closed-form"
+  }
+}
