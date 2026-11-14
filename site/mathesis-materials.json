@@ -2,12 +2,12 @@
   "schema": "mathesis.materials.v1",
   "work": "mathar-a027182-closed-form",
   "version": 4,
-  "repository_url": "https://github.com/mathesis-papers/6aec384a07848d67879121d7",
-  "site_url": "https://papers.trureturing.org/6aec384a07848d67879121d7/",
+  "repository_url": "https://github.com/mathesis-papers/10.5281-zenodo.23884889",
+  "site_url": "https://papers.trureturing.org/10.5281-zenodo.23884889/",
   "doi": "10.5281/zenodo.23884890",
   "reading": {
-    "en": "https://papers.trureturing.org/6aec384a07848d67879121d7/en/",
-    "zh": "https://papers.trureturing.org/6aec384a07848d67879121d7/zh/"
+    "en": "https://papers.trureturing.org/10.5281-zenodo.23884889/en/",
+    "zh": "https://papers.trureturing.org/10.5281-zenodo.23884889/zh/"
   },
   "slides": [],
   "visualizations": []
