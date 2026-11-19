@@ -1,0 +1,29 @@
+{
+  "duration": "2:34",
+  "id": "001-symmetry-to-recurrence",
+  "lean": [
+    "D5/S1/Recurrence/MatharA027182SelfConvolution.result"
+  ],
+  "narration": {
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "language": "en",
+    "voice": "af_heart"
+  },
+  "outputs": {
+    "cover": "mathar-a027182-closed-form_001_cover.jpg",
+    "narrated_720p": "mathar-a027182-closed-form_001_720p_narrated.mp4"
+  },
+  "publication_basis": "pinned",
+  "released": "2026-11-16",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · deterministic canvas",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "summary": "A worked row reveals how symmetry, binomial sums and correctly shifted coefficients prove Mathar’s recurrence. Based on Ma and Zhang, version 4.",
+  "summary_zh": "从一行可手算的数字出发，解释对称性、二项式求和与正确移位如何证明 Mathar 递推。依据 Ma 与 Zhang 的第 4 版论文。",
+  "title": "From a symmetric row to a recurrence",
+  "title_zh": "从对称数行到递推式"
+}

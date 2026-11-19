@@ -1,0 +1,12 @@
+kind = "academic"
+editions = ["zh", "en"]
+aspect = "4:3"
+structure_colour = "#0e2c8e"
+short_author = "H. Ma, W. Zhang"
+short_title = "A027182"
+date = "Version 4 · 2026-11-05"
+navigation_symbols = false
+
+[title]
+zh = "Mathar 猜想：对称性、闭式与递推"
+en = "Mathar’s conjecture: symmetry, closed form and recurrence"

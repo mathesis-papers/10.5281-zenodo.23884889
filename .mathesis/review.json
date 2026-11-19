@@ -1,0 +1,34 @@
+{
+  "results": {
+    "main-formula": {
+      "comparison_verdict": "special case",
+      "compared_public_gid": "D5/S1/Recurrence/MatharA027182SelfConvolution.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Source Theorem 1 is the conjunction of the closed form for every integer n >= 0 and recurrence for every n >= 6. The public Lean result is a special case in scope: it proves the recurrence clause alone with the same t, T, g and a, integer coefficient arithmetic and lower bound. A private closed_form helper proves the formula, and its mangled private name occurs in frozen evidence, but it is not a stable public declaration/GID. Retain the full source theorem as written proof and request only the remaining public closed-form/full-theorem interface; do not duplicate the recurrence proof."
+    },
+    "middle-entries": {
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Source Corollary 2 covers u_n=T(2n,n), n >= 0, recurrence n >= 2, and v_n=T(2n-1,n-1), n >= 1, recurrence n >= 3. It includes the constant 12(1-3n) and both sequence conventions. Neither public result nor another public declaration in the inspected matching module states these two companion recurrences. The shared central-binomial method is not exact theorem coverage."
+    },
+    "near-middle": {
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Source Corollary 3 covers z_n=T(2n,n-2), n >= 2, with its full three sequence coefficients and inhomogeneous quadratic for n >= 4. The public A027182 theorem is a different sequence and relation. No matching public declaration was identified in the scoped search; retain the written proof, its rational closed form and exact polynomial certificate."
+    },
+    "half-row": {
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Source Corollary 4 covers the inclusive half-row b_n=sum k=0..floor(n/2) T(n,k), n >= 0, all seven polynomial coefficients p_0..p_6 and the inhomogeneous quadratic for n >= 6. Parity, n=0 and the even middle-entry correction are essential. The A027182 recurrence neither states this sum nor its recurrence. Retain the complete written parity proof with even/odd certificates."
+    },
+    "mathar-recurrence": {
+      "comparison_verdict": "same",
+      "compared_public_gid": "D5/S1/Recurrence/MatharA027182SelfConvolution.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "This explicitly isolated recurrence clause of source Theorem 1 is exactly public result after unfolding claim: forall n : Nat, 6 <= n -> the six sequence terms plus 24(12n-47) equal zero. T uses natural subtraction followed by +1; on 0 <= k <= n, t >= 5, so it equals the manuscript t-4. Polynomial coefficients are natural and all recurrence arithmetic is cast to integers. Since n >= 6, shifts n-1 through n-5 have no truncated subtraction. This row does not claim the full conjunction or the n=5 extension."
+    }
+  }
+}

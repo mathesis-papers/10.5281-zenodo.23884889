@@ -1,0 +1,27 @@
+{
+  "schema": "mathesis.collection-history.v1",
+  "sha256": {
+    "versions/v4/.mathesis/generated.json": "877db35b5c561065b18afd7c36782fc4da0bd18e1a2360e1de0ca4b7bcee4047",
+    "versions/v4/CHANGELOG.md": "d9861eceb884d4be7789fa50467638508027bd1aa15a2ff6df86aefde6c270f8",
+    "versions/v4/CITATION.cff": "5308d8064a37a4d3b79798ca90704c774cd710ce7896bb03f82fac6f716a3e11",
+    "versions/v4/CONTRIBUTING.md": "fafd66e63160b2a88f433af56d2af2b0f7bf6ed2fd417d46b54446ce07c627ff",
+    "versions/v4/LICENSES/CC-BY-4.0.txt": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+    "versions/v4/README.md": "824a117356ac9586103cc97a40773fee52d1c6f9318b5665695c6243cbe6de6f",
+    "versions/v4/formalization/nodes.json": "d9baa521aaf358f71275984e043b0389e55020a6bd8afff00e366524e645a33e",
+    "versions/v4/manuscript/MANIFEST.json": "5cd2295ecd0d0679514217c225bcc8fd5489530dd733d7d45f0f16dd8cf24bc1",
+    "versions/v4/manuscript/README.md": "c8134f10f2ed903517d14792b05076cc23bfa7f62a883a28d0f65bed102184e0",
+    "versions/v4/manuscript/b027182.txt": "cb0394d4592a57fb75fae4a518b228c2ea7105444840e0024bc2bcd6ac421011",
+    "versions/v4/manuscript/coverage.json": "a5c672be1c732a6f601b9ad70daefa17ac4f4d04a61073a73cb5109c99c4b563",
+    "versions/v4/manuscript/metadata.json": "8b4f559804b864db16d9fb814bdde6e7fcee13456f9acf655babe90f876d47ee",
+    "versions/v4/manuscript/note.tex": "071324e2c1fef96061cfcad3fbd55de90938c8fd9f871643fc288530b64db1ec",
+    "versions/v4/manuscript/provenance.json": "23e263d5510a574eb37e34637ae43f87070e6f235e2606c6f08a56e55222a6c6",
+    "versions/v4/manuscript/sequence-prefixes.json": "6f8c6bcab2d355a7a02f0ab80213c3463cbdde18d6718a6942bb216b98577221",
+    "versions/v4/manuscript/verification.json": "663538a83f812d725899158fa887724942f94dc635b1c0b638ad9177267ab2c7",
+    "versions/v4/manuscript/verify.py": "18bf7cc27a3e7cabada583f1eda55b9c284d1d3a35c459a3dfbb01cfa47ca14f",
+    "versions/v4/paper.json": "04e429e38acd46d81c3e0f7783fdf00176fb3474d9e34464f2ec3e869c272eac",
+    "versions/v4/paper.pdf": "452af97384302ff222fac940759d321ec76bf44e80ddd4e1eca8e78b8bfcab38",
+    "versions/v4/source.archive": "a36826a45523cdafc39b1f2055e51130f9e6af99908175fa1fb01569ec53e0cf"
+  },
+  "source_commit": "7710bcd680210b23c2258e6c5d1914d313affaf8",
+  "work": "mathar-a027182-closed-form"
+}

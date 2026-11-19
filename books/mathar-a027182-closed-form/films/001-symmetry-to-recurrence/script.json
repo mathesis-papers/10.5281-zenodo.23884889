@@ -1,0 +1,186 @@
+{
+  "voice": "af_heart",
+  "speed": 0.94,
+  "say": {
+    "Lean": "Leen",
+    "Kimberling": "Kim ber ling",
+    "Mathar": "Mah tar",
+    "Krause": "Krow zuh"
+  },
+  "music": {
+    "bpm": 80,
+    "progression": "a-minor"
+  },
+  "scenes": [
+    {
+      "id": "row",
+      "name": "THE QUESTION",
+      "lead": 0.8,
+      "tail": 0.9,
+      "music": [
+        0.35,
+        0.12,
+        0.08,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Start with five, ten, five: row two of a number triangle introduced by Clark Kimberling.",
+          "从 Clark Kimberling 数三角形的第二行开始：五、十、五。"
+        ],
+        [
+          "Multiply the row by its reverse and add. Twenty-five plus one hundred plus twenty-five is one hundred and fifty.",
+          "把这一行与倒序逐项相乘再相加：二十五加一百加二十五，得到一百五十。"
+        ],
+        [
+          "As the rows grow, can one formula replace all these products?",
+          "当数行越来越长，一个公式能否代替所有这些乘积？"
+        ]
+      ]
+    },
+    {
+      "id": "symmetry",
+      "name": "SYMMETRY",
+      "lead": 0.8,
+      "tail": 0.9,
+      "music": [
+        0.35,
+        0.12,
+        0.08,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Use powers of x to remember positions. In the square, positions adding to n supply the coefficient of x to the n.",
+          "用 x 的幂记住位置；平方时，位置之和为 n 的项贡献第 n 次幂的系数。"
+        ],
+        [
+          "Every row reads the same backward. So each paired product is a square.",
+          "每一行倒过来仍相同，所以每个配对乘积都成了平方。"
+        ],
+        [
+          "This exact symmetry turns the self-convolution into a sum of squares, for every row.",
+          "这个精确的对称性，把每一行的自卷积变成平方和。"
+        ]
+      ]
+    },
+    {
+      "id": "sums",
+      "name": "FIVE SUMS",
+      "lead": 0.8,
+      "tail": 0.9,
+      "music": [
+        0.35,
+        0.12,
+        0.08,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "A row entry is twice A, plus B, minus four. A and B are binomial coefficients, counting choices of objects.",
+          "每个行元素等于二倍 A 加 B 再减四；A 与 B 是计数选择方法的二项式数。"
+        ],
+        [
+          "Expand its square. Five kinds of sums remain, plus a constant contribution.",
+          "展开平方后，除了常数贡献，只剩下五类和。"
+        ],
+        [
+          "Choosing from two groups counts the same subsets as choosing from their union. This identity evaluates the squared and mixed sums.",
+          "从两组中选择与从它们的并集中选择，计数的是同样的子集；这个恒等式算出平方和与混合和。"
+        ],
+        [
+          "For row two, these five sums are sixty-eight, twenty, six, fourteen, and four.",
+          "对第二行，这五个和依次是六十八、二十、六、十四、四。"
+        ]
+      ]
+    },
+    {
+      "id": "formula",
+      "name": "THE CLOSED FORM",
+      "lead": 0.8,
+      "tail": 0.9,
+      "music": [
+        0.35,
+        0.12,
+        0.08,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Let c sub m count the ways to choose m objects from twice m objects. These are central binomial coefficients.",
+          "用 c 下标 m 表示从二倍 m 个对象中选出 m 个的方法数，这就是中心二项式数。"
+        ],
+        [
+          "The answer uses three neighboring central binomial coefficients, a power of two, and a linear correction.",
+          "答案由三个相邻的中心二项式数、一个二的幂和一个一次修正项组成。"
+        ],
+        [
+          "Ma and Zhang prove this closed form for every nonnegative row number, including the added value at zero.",
+          "Ma 与 Zhang 证明这个闭式适用于所有非负行号，包括补入的零号值。"
+        ]
+      ]
+    },
+    {
+      "id": "shift",
+      "name": "WHY A RECURRENCE?",
+      "lead": 0.8,
+      "tail": 0.9,
+      "music": [
+        0.35,
+        0.12,
+        0.08,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Consecutive central binomial coefficients have a simple ratio, obtained by canceling factorials.",
+          "相邻中心二项式数有一个简单比值，可由阶乘约分得到。"
+        ],
+        [
+          "Their three-term combination obeys a second-order relation. Call that operation B.",
+          "这三个相邻数的组合满足一个二阶关系，把这套运算记作 B。"
+        ],
+        [
+          "After B, two shifted differences remove the exponential part. A final difference leaves a known linear remainder.",
+          "做 B 之后，两次移位差分消去指数部分；最后一次差分留下已知的一次余项。"
+        ],
+        [
+          "A shift must move the coefficients too. This gives Mathar’s recurrence, with six sequence terms, for every n at least six.",
+          "移位也必须移动系数，由此得到对所有 n 至少为六成立、含六个序列项的 Mathar 递推式。"
+        ]
+      ]
+    },
+    {
+      "id": "scope",
+      "name": "ONE STRUCTURE, MORE SEQUENCES",
+      "lead": 0.8,
+      "tail": 0.9,
+      "music": [
+        0.35,
+        0.12,
+        0.08,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "The same central binomial relation proves recurrences for middle entries and a near-middle entry. Half-row sums also need an even-odd split.",
+          "同一个中心二项式关系还证明中间项与近中间项的递推；半行和则还需要区分奇偶。"
+        ],
+        [
+          "Krause supplied the companion closed forms. The paper credits Mathar’s parity formulas and Stephan’s row-sum formula.",
+          "伴随闭式来自 Krause；论文保留 Mathar 奇偶公式和 Stephan 行和公式的归属。"
+        ],
+        [
+          "The public Lean theorem checks the main recurrence for n at least six. The full closed form and companion results are explained by the manuscript proofs.",
+          "公开 Lean 定理核对了 n 至少为六的主递推；完整闭式与伴随结果由原文书面证明说明。"
+        ]
+      ]
+    }
+  ]
+}

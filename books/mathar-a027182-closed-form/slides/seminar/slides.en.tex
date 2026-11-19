@@ -1,0 +1,264 @@
+\documentclass{beamer}
+\input{tbook-deck}
+\title{Mathar’s conjecture: from symmetry to recurrence}
+\author{Haobo Ma\inst{1} \and Wenlin Zhang\inst{1,2}}
+\institute{\inst{1}ChronoAI Pte Ltd, Singapore\\\inst{2}National University of Singapore, Singapore}
+\date{2026-11-05}
+\begin{document}
+% Manuscript: Title and abstract
+\begin{frame}
+\titlepage
+\note{This talk follows version 4 by Haobo Ma and Wenlin Zhang. Begin with a row that can be checked by hand, then explain two mechanisms: binomial summation and shifts with variable coefficients. Preserve the original attribution of the problem and prior formulas.}
+\end{frame}
+% Manuscript: Introduction and proof outline
+\begin{frame}{Route}
+\tableofcontents
+\note{The first half needs school algebra. The second half organizes neighboring-term relations as operators. The appendix retains the longer certificates and exact evidence scope.}
+\end{frame}
+\section[Rows]{From rows to a closed form}
+\subsection{Example and result}
+% Manuscript: Definitions preceding Theorem 1; Initial values
+\begin{frame}{Start with one row}
+\[
+(5,10,5)\quad\longrightarrow\quad
+5\cdot5+10\cdot10+5\cdot5=150.
+\]
+\begin{block}{Question}
+As rows grow, can one direct formula or fixed-length recurrence give the answer?
+\end{block}
+Kimberling’s triangle; Mathar’s recurrence conjecture of 6 May 2026.
+\note{This is row $2$, with indices starting at $0$. The final $120$ in the OEIS example is an arithmetic slip; the sum is $150$, agreeing with its term list. One example is not an all-index proof: it points us toward symmetry.}
+\end{frame}
+% Manuscript: Definitions preceding Theorem 1
+\begin{frame}{Package the row as a polynomial}
+\small
+For $n\ge0$ and $0\le k\le n$,
+\[
+T(n,k)=2\binom{n+2}{k+1}+\binom nk-4.
+\]
+\[
+g_n(x)=\sum_{k=0}^nT(n,k)x^k,\qquad a_n=[x^n]g_n(x)^2.
+\]
+\[
+g_2(x)=5+10x+5x^2.
+\]
+$x$ records position; $[x^n]$ extracts its coefficient.
+\note{The original definition adds four binomial coefficients to obtain $t(n,k)$, then sets $T=t-t(0,0)+1=t-4$. Pascal’s identity gives the displayed form. Explain $\binom Nk$ as choosing $k$ objects from $N$. We do not need to evaluate $x$.}
+\end{frame}
+% Manuscript: Theorem 1 proof, row symmetry
+\begin{frame}{Symmetry turns pairings into squares}
+\[
+T(n,n-k)=T(n,k).
+\]
+\[
+a_n=\sum_{k=0}^nT(n,k)T(n,n-k)
+    =\sum_{k=0}^nT(n,k)^2.
+\]
+\begin{block}{Reason}
+$\binom Nj=\binom N{N-j}$: choosing a subset or its complement gives a bijection.
+\end{block}
+\note{Two positions must sum to $n$ to contribute to $x^n$. Symmetry is an identity for every row, not an approximation. This is the first structural step to understand.}
+\end{frame}
+% Manuscript: Theorem 1, closed-form clause
+\begin{frame}{Main theorem: direct evaluation}
+\begin{bookresult}{main-formula}
+For all $n\ge0$, put $c_m=\binom{2m}m$. Then
+\[
+a_n=4c_{n+2}+4c_{n+1}+c_n-72\cdot2^n+16n+40.
+\]
+Consequently, the next slide’s recurrence holds for $n\ge6$.
+\end{bookresult}
+The original sequence starts at $1$; the definition supplies $a_0=1$.
+\note{The formula separates central binomial, exponential and affine parts. Check $n=0$: $24+8+1-72+40=1$. The full source theorem is the conjunction of closed form and recurrence; the public Lean theorem exactly covers the recurrence on the next slide.}
+\end{frame}
+% Manuscript: Theorem 1, recurrence clause
+\begin{frame}{Mathar’s recurrence}
+\begin{bookresult}{mathar-recurrence}
+For every natural number $n\ge6$,
+\small
+\[
+\begin{aligned}
+0={}&2(n+2)a_n-(17n+23)a_{n-1}\\
+&+(47n+36)a_{n-2}-2(22n+17)a_{n-3}\\
+&+4(20-n)a_{n-4}+8(2n-9)a_{n-5}\\
+&+24(12n-47).
+\end{aligned}
+\]
+\end{bookresult}
+\note{There are six sequence terms and an inhomogeneous correction. Since $2(n+2)$ is nonzero here, the relation determines $a_n$ from earlier terms. The written proof also gives $n=5$ after adjoining $a_0$; the public theorem on this slide states $n\ge6$. Minimal order is not asserted.}
+\end{frame}
+\section[Proof]{Proof mechanism}
+\subsection{Sums and shifts}
+% Manuscript: Theorem 1 proof, five binomial sums
+\begin{frame}{Five sums produce the closed form}
+\small
+$A_k=\binom{n+2}{k+1}$, $B_k=\binom nk$; all sums run over $k=0,\ldots,n$.
+\[
+\begin{aligned}
+\sum A_k^2&=\binom{2n+4}{n+2}-2,&\sum A_kB_k&=\binom{2n+2}{n+1},\\
+\sum B_k^2&=\binom{2n}n,&\sum A_k&=2^{n+2}-2,\\
+\sum B_k&=2^n.
+\end{aligned}
+\]
+\[
+\sum(2A_k+B_k-4)^2
+=4\sum A_k^2+4\sum A_kB_k+\sum B_k^2
+\]
+\[
+\hspace{25mm}-16\sum A_k-8\sum B_k+16(n+1).
+\]
+\note{Use $\sum_j\binom rj\binom s{q-j}=\binom{r+s}q$: choosing from two groups counts the same subsets as choosing from their union. The $A$ sums omit two endpoints, explaining both corrections of $-2$. The omitted mixed-sum endpoint is zero. Expansion yields $-72\cdot2^n$ and $16n+40$.}
+\end{frame}
+% Manuscript: Theorem 1 proof, B and h
+\begin{frame}{First obtain a second-order relation}
+\small
+\[
+R_m=(m+1)c_{m+1}-2(2m+1)c_m=0,
+\]
+\[
+h_m=4c_{m+2}+4c_{m+1}+c_m.
+\]
+\[
+(Bf)_m=2(m+4)f_{m+2}-(7m+27)f_{m+1}-(4m+2)f_m.
+\]
+\[
+(Bh)_m=8R_{m+3}+12R_{m+2}+6R_{m+1}+R_m=0.
+\]
+\note{Cancel factorials to get $c_{m+1}/c_m=2(2m+1)/(m+1)$. Rather than guess a recurrence for $a$, combine four adjacent identities for its simpler central-binomial part $h$.}
+\end{frame}
+% Manuscript: Theorem 1 proof, operator factorization
+\begin{frame}{Shifts must move the coefficients too}
+\small
+Let $(Ef)_m=f_{m+1}$, $Q(E)=(E-1)(E-2)^2$, and $L=Q(E)B$.
+\[
+E(Bf)_m=2(m+5)f_{m+3}-(7m+34)f_{m+2}-(4m+6)f_{m+1}.
+\]
+\[
+(B(2^\bullet))_m=(-10m-24)2^m,\qquad L(2^\bullet)=0.
+\]
+With $p_m=16m+40$,
+\[
+(Bp)_m=-144m^2-744m-1016,\quad (Lp)_m=-24(12m+13).
+\]
+Thus $(La)_m+24(12m+13)=0$; put $m=n-5$.
+\note{The coefficients of $B$ depend on $m$ and cannot be held constant under a shift. The factor $(E-2)^2$ kills $(\alpha m+\beta)2^m$. For $q_m=\alpha m^2+\beta m+\gamma$, $Q(E)q=2\alpha m+\beta-3\alpha$. This explains why the exponential part disappears and an inhomogeneous term remains.}
+\end{frame}
+\section[Companions]{Companion results}
+\subsection{Middle entries and half-rows}
+% Manuscript: Corollary 2
+\begin{frame}{Two middle entries, one formula}
+\small
+\begin{bookresult}{middle-entries}
+$u_n=T(2n,n)$ ($n\ge0$), $v_n=T(2n-1,n-1)$ ($n\ge1$).
+\[
+2(n+1)f_n-(7n+5)f_{n-1}+2(3-2n)f_{n-2}+12(1-3n)=0
+\]
+For $f=u$, $n\ge2$; for $f=v$, $n\ge3$.
+\end{bookresult}
+\[
+u_n=d_n-4,\quad v_n=\tfrac12d_n-4,\quad d_n=2c_{n+1}+c_n.
+\]
+Closed forms: Christian Krause. Recurrences follow from $R_m=0$.
+\note{The homogeneous part is $4R_n+4R_{n-1}+R_{n-2}=0$. Its coefficients sum to $3-9n$; subtracting $4$ contributes $36n-12$. The two different lower bounds keep the earliest sequence indices in their domains.}
+\end{frame}
+% Manuscript: Corollary 3
+\begin{frame}{Near the middle: a rational factor}
+\small
+\begin{bookresult}{near-middle}
+$z_n=T(2n,n-2)$ ($n\ge2$). For $n\ge4$,
+\[
+\begin{aligned}
+0={}&-2(n+3)(139n-175)z_n\\
+&+(1279n^2+1334n-1089)z_{n-1}\\
+&-2(167n+121)(2n-3)z_{n-2}\\
+&+12(111n^2+456n+229).
+\end{aligned}
+\]
+\end{bookresult}
+\[
+z_n=\frac{n(9n^2+14n+1)}{(n+1)(n+2)(n+3)}c_n-4.
+\]
+\note{Krause’s formula gives a rational multiple of $c_n$. Use $c_{n-1}/c_n=n/(2(2n-1))$ and the two-step ratio, then clear denominators. The result is an explicit polynomial identity. All denominators are nonzero for $n\ge4$; the certificate is in the companion chapter of the reading edition.}
+\end{frame}
+% Manuscript: Corollary 4, parity decomposition
+\begin{frame}{Half-row sums: handle the middle entry}
+\small
+\[
+b_n=\sum_{k=0}^{\lfloor n/2\rfloor}T(n,k),\qquad S_n=9\cdot2^n-4n-8.
+\]
+\[
+b_n=\begin{cases}S_n/2,&n\text{ odd},\\(S_n+T(n,n/2))/2,&n\text{ even}.\end{cases}
+\]
+\[
+w_{2m}=\frac{9m+5}{m+1}c_m,\quad w_{2m+1}=0,
+\]
+\[
+b_n=\frac92\,2^n-2n-5-(-1)^n+\frac12w_n.
+\]
+$ b_2=(20+10)/2=15$, $b_3=52/2=26$.
+\note{Row number $n$ and row length $n+1$ have opposite parity. Credit Mathar’s parity formulas and the row-sum formula recorded by Stephan with proof credited to Krause. The seven-term recurrence reduces to one polynomial certificate for each parity; see the appendix and reading edition.}
+\end{frame}
+% Manuscript: Verification and availability; references
+\begin{frame}{Outcome and exact scope}
+\begin{itemize}
+\item Symmetry turns convolution into squares; binomial sums give the formula.
+\item Central binomial ratios and correctly shifted coefficients give the recurrence.
+\item The same structure explains middle, near-middle and half-row sequences.
+\end{itemize}
+\small
+Public Lean theorem: A027182 recurrence for $n\ge6$.\\
+Full main theorem and companions: manuscript proofs.\\
+Checks through $400$ are additionally reported by the paper; minimal order is not proved.\\
+Source: version 4, \href{https://doi.org/10.5281/zenodo.23884890}{doi:10.5281/zenodo.23884890}.
+\note{Emphasize the completed mathematics and its mechanism. Coordinate further formalization through the shared requests linked in the reading edition. One checked theorem does not establish whole-paper coverage, and finite checks do not prove all-index identities.}
+\end{frame}
+\appendix
+\section{Technical appendix}
+% Manuscript: Corollary 4, complete recurrence
+\begin{frame}{Appendix: the complete half-row recurrence}
+\small
+\begin{bookresult}{half-row}
+For $n\ge6$, $\sum_{j=0}^6p_j(n)b_{n-j}+4(-24n^2+196n-365)=0$, where
+\[
+\begin{aligned}
+p_0&=-(n+2)(3n-20),&p_1&=-(n+1)(3n-11),\\
+p_2&=33n^2-180n-100,&p_3&=15n^2-56n+1,\\
+p_4&=2(-51n^2+313n-208),\\
+p_5&=-12(n-1)(n-4),&p_6&=8(9n-11)(n-5).
+\end{aligned}
+\]
+\end{bookresult}
+\note{Every $p_j$ is evaluated at the same $n$, not at $n-j$. The exponential and alternating parts vanish, while the even and odd central terms vanish by the next slide’s certificates. The reading edition retains the full argument.}
+\end{frame}
+% Manuscript: Corollary 4, equations evencert and oddcert
+\begin{frame}{Appendix: parity certificates}
+\footnotesize
+\[
+\begin{aligned}
+E(n)={}&-8(n-3)(n-1)(3n-20)(9n+10)\\
+&+2(n-3)(9n-8)(33n^2-180n-100)\\
+&-n(9n-26)(51n^2-313n+208)\\
+&+n(n-2)(9n-44)(9n-11)=0,\\
+O(n)={}&-4(n-2)(3n-11)(9n+1)\\
+&+(9n-17)(15n^2-56n+1)-3(n-1)^2(9n-35)=0.
+\end{aligned}
+\]
+Even: $(\mathcal Pw)_n/c_{n/2}=E(n)/(8(n-3)(n-1))$.\\
+Odd: $(\mathcal Pw)_n/c_{(n-1)/2}=O(n)/(4(n-2))$.
+\note{Here $(\mathcal Pf)_n=\sum_{j=0}^6p_j(n)f_{n-j}$. The even range is $n\ge6$, the odd range $n\ge7$, so the denominators are nonzero. Expanding the certificates gives polynomial identities, rather than tests at a few numerical values.}
+\end{frame}
+% Manuscript: Bibliography and verification paragraph
+\begin{frame}{Appendix: sources and contributions}
+\small
+\begin{itemize}
+\item Haobo Ma, Wenlin Zhang, version 4, \href{https://doi.org/10.5281/zenodo.23884890}{10.5281/zenodo.23884890}.
+\item Kimberling: A027170 and related sequences; Mathar: 2026 recurrences and parity formulas.
+\item Krause: middle and near-middle closed forms; Stephan: 2004 row-sum formula.
+\item Bostan, Lairez, Salvy, \emph{Multiple binomial sums}, \href{https://doi.org/10.1016/j.jsc.2016.04.002}{10.1016/j.jsc.2016.04.002}.
+\end{itemize}
+Shared requests: \href{https://github.com/the-omega-institute/trureturing-requests/issues/253}{closed form}, \href{https://github.com/the-omega-institute/trureturing-requests/issues/254}{middle}, \href{https://github.com/the-omega-institute/trureturing-requests/issues/255}{near-middle}, \href{https://github.com/the-omega-institute/trureturing-requests/issues/256}{half-row}.
+\note{Contributors coordinate on the shared request, work in their own fork and submit a focused PR directly to upstream dev under existing admission and review rules. Keep mathematical authorship and formalization contributions separately attributed.}
+\end{frame}
+% Manuscript: Public Lean recurrence and written proof scope (generated ledger)
+\FormalVerification
+\end{document}

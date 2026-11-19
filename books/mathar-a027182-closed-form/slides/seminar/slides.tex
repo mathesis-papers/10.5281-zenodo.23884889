@@ -1,0 +1,264 @@
+\documentclass{beamer}
+\input{tbook-deck}
+\title{Mathar 猜想：对称性、闭式与递推}
+\author{Haobo Ma\inst{1} \and Wenlin Zhang\inst{1,2}}
+\institute{\inst{1}ChronoAI Pte Ltd, Singapore\\\inst{2}National University of Singapore, Singapore}
+\date{2026-11-05}
+\begin{document}
+% Manuscript: Title and abstract
+\begin{frame}
+\titlepage
+\note{本报告解说 Haobo Ma 与 Wenlin Zhang 的论文第 4 版。先从可手算的行进入，再解释两个机制：二项式求和，以及带系数的移位。保持原作者、问题提出者与已有公式的归属。}
+\end{frame}
+% Manuscript: Introduction and proof outline
+\begin{frame}{路线}
+\tableofcontents
+\note{前半段只需学校代数。后半段把邻项关系写成算子，附录保留长证书及精确证据范围。}
+\end{frame}
+\section{从数行到闭式}
+\subsection{例子与主结果}
+% Manuscript: Definitions preceding Theorem 1; Initial values
+\begin{frame}{先算一行}
+\[
+(5,10,5)\quad\longrightarrow\quad
+5\cdot5+10\cdot10+5\cdot5=150.
+\]
+\begin{block}{问题}
+整行越来越长，答案能否由一个直接公式或固定长度递推给出？
+\end{block}
+Kimberling 的三角形；Mathar 于 2026 年 5 月 6 日提出的递推。
+\note{这一行是第 $2$ 行，下标从 $0$ 起。原 OEIS 示例末尾写成 $120$，实际是 $150$，与项表一致。算出一个例子不能证明所有行；它帮助我们找出对称性。}
+\end{frame}
+% Manuscript: Definitions preceding Theorem 1
+\begin{frame}{把数行装进多项式}
+\small
+对 $n\ge0$、$0\le k\le n$，
+\[
+T(n,k)=2\binom{n+2}{k+1}+\binom nk-4.
+\]
+\[
+g_n(x)=\sum_{k=0}^nT(n,k)x^k,\qquad a_n=[x^n]g_n(x)^2.
+\]
+\[
+g_2(x)=5+10x+5x^2.
+\]
+$x$ 记录位置；$[x^n]$ 取第 $n$ 次幂的系数。
+\note{原始定义是四个二项式数之和 $t(n,k)$，然后 $T=t-t(0,0)+1=t-4$。这里用帕斯卡恒等式化简。$\binom Nk$ 计数从 $N$ 个对象选出 $k$ 个的方法数。$x$ 不必代入数值。}
+\end{frame}
+% Manuscript: Theorem 1 proof, row symmetry
+\begin{frame}{对称性把配对变成平方}
+\[
+T(n,n-k)=T(n,k).
+\]
+\[
+a_n=\sum_{k=0}^nT(n,k)T(n,n-k)
+    =\sum_{k=0}^nT(n,k)^2.
+\]
+\begin{block}{原因}
+$\binom Nj=\binom N{N-j}$：选集合与选补集一一对应。
+\end{block}
+\note{乘法中两个位置之和必须等于 $n$ 才贡献 $x^n$。对称性不是近似，而是每行的恒等式。这是整个证明最先应看懂的一步。}
+\end{frame}
+% Manuscript: Theorem 1, closed-form clause
+\begin{frame}{主定理：直接求值}
+\begin{bookresult}{main-formula}
+对所有 $n\ge0$，令 $c_m=\binom{2m}m$，则
+\[
+a_n=4c_{n+2}+4c_{n+1}+c_n-72\cdot2^n+16n+40.
+\]
+由此得到下一页在 $n\ge6$ 时的递推。
+\end{bookresult}
+原序列从 $1$ 起；同一定义补上 $a_0=1$。
+\note{闭式拆成中心二项式数、指数与一次式。检查 $n=0$：$24+8+1-72+40=1$。完整主定理是闭式与递推的合取；公开 Lean 定理准确覆盖的是下一页的递推结论。}
+\end{frame}
+% Manuscript: Theorem 1, recurrence clause
+\begin{frame}{Mathar 的递推式}
+\begin{bookresult}{mathar-recurrence}
+对每个自然数 $n\ge6$，
+\small
+\[
+\begin{aligned}
+0={}&2(n+2)a_n-(17n+23)a_{n-1}\\
+&+(47n+36)a_{n-2}-2(22n+17)a_{n-3}\\
+&+4(20-n)a_{n-4}+8(2n-9)a_{n-5}\\
+&+24(12n-47).
+\end{aligned}
+\]
+\end{bookresult}
+\note{这是当前项加五个先前项，以及一个非齐次修正。系数 $2(n+2)$ 在所述范围非零，因此可以解出 $a_n$。补入 $a_0$ 后书面证明也给出 $n=5$；本页公开定理只陈述 $n\ge6$。没有声称阶数最小。}
+\end{frame}
+\section{证明机制}
+\subsection{求和与移位}
+% Manuscript: Theorem 1 proof, five binomial sums
+\begin{frame}{闭式来自五类和}
+\small
+$A_k=\binom{n+2}{k+1}$，$B_k=\binom nk$；所有和取 $k=0,\ldots,n$。
+\[
+\begin{aligned}
+\sum A_k^2&=\binom{2n+4}{n+2}-2,&\sum A_kB_k&=\binom{2n+2}{n+1},\\
+\sum B_k^2&=\binom{2n}n,&\sum A_k&=2^{n+2}-2,\\
+\sum B_k&=2^n.
+\end{aligned}
+\]
+\[
+\sum(2A_k+B_k-4)^2
+=4\sum A_k^2+4\sum A_kB_k+\sum B_k^2
+\]
+\[
+\hspace{25mm}-16\sum A_k-8\sum B_k+16(n+1).
+\]
+\note{用 $\sum_j\binom rj\binom s{q-j}=\binom{r+s}q$：分别从两组对象选择与直接从合并集合选择是同一件事。$A$ 漏掉两个端点，所以两处有 $-2$。混合和漏掉的端点贡献零。展开后指数项是 $-72\cdot2^n$，其余修正是 $16n+40$。}
+\end{frame}
+% Manuscript: Theorem 1 proof, B and h
+\begin{frame}{先得到一个二阶关系}
+\small
+\[
+R_m=(m+1)c_{m+1}-2(2m+1)c_m=0,
+\]
+\[
+h_m=4c_{m+2}+4c_{m+1}+c_m.
+\]
+\[
+(Bf)_m=2(m+4)f_{m+2}-(7m+27)f_{m+1}-(4m+2)f_m.
+\]
+\[
+(Bh)_m=8R_{m+3}+12R_{m+2}+6R_{m+1}+R_m=0.
+\]
+\note{中心二项式比值从阶乘约分得到：$c_{m+1}/c_m=2(2m+1)/(m+1)$。不是对 $a$ 猜递推，而是先对结构较简单的 $h$ 组合四条相邻恒等式。}
+\end{frame}
+% Manuscript: Theorem 1 proof, operator factorization
+\begin{frame}{移位也必须移动系数}
+\small
+令 $(Ef)_m=f_{m+1}$，$Q(E)=(E-1)(E-2)^2$，$L=Q(E)B$。
+\[
+E(Bf)_m=2(m+5)f_{m+3}-(7m+34)f_{m+2}-(4m+6)f_{m+1}.
+\]
+\[
+(B(2^\bullet))_m=(-10m-24)2^m,\qquad L(2^\bullet)=0.
+\]
+令 $p_m=16m+40$，则
+\[
+(Bp)_m=-144m^2-744m-1016,\quad (Lp)_m=-24(12m+13).
+\]
+所以 $(La)_m+24(12m+13)=0$；取 $m=n-5$。
+\note{这里 $B$ 的系数随 $m$ 变化，不能当成常数。对 $(\alpha m+\beta)2^m$，$(E-2)^2$ 为零。对二次式 $q_m=\alpha m^2+\beta m+\gamma$，$Q(E)q=2\alpha m+\beta-3\alpha$。这些运算解释了非齐次项为何留下而指数项消失。}
+\end{frame}
+\section{伴随结果}
+\subsection{中间项与半行和}
+% Manuscript: Corollary 2
+\begin{frame}{两种中间项，共用一个公式}
+\small
+\begin{bookresult}{middle-entries}
+$u_n=T(2n,n)$ ($n\ge0$)，$v_n=T(2n-1,n-1)$ ($n\ge1$)。
+\[
+2(n+1)f_n-(7n+5)f_{n-1}+2(3-2n)f_{n-2}+12(1-3n)=0
+\]
+对 $f=u$，$n\ge2$；对 $f=v$，$n\ge3$。
+\end{bookresult}
+\[
+u_n=d_n-4,\quad v_n=\tfrac12d_n-4,\quad d_n=2c_{n+1}+c_n.
+\]
+闭式归于 Christian Krause；递推由 $R_m=0$ 推出。
+\note{齐次部分是 $4R_n+4R_{n-1}+R_{n-2}=0$。三个系数的和是 $3-9n$；减去 $4$ 产生 $36n-12$。下界分别保证所用最早序列项定义良好。}
+\end{frame}
+% Manuscript: Corollary 3
+\begin{frame}{靠近中间：一个有理因子}
+\small
+\begin{bookresult}{near-middle}
+$z_n=T(2n,n-2)$ ($n\ge2$)。对 $n\ge4$，
+\[
+\begin{aligned}
+0={}&-2(n+3)(139n-175)z_n\\
+&+(1279n^2+1334n-1089)z_{n-1}\\
+&-2(167n+121)(2n-3)z_{n-2}\\
+&+12(111n^2+456n+229).
+\end{aligned}
+\]
+\end{bookresult}
+\[
+z_n=\frac{n(9n^2+14n+1)}{(n+1)(n+2)(n+3)}c_n-4.
+\]
+\note{Krause 的闭式给出有理倍数。用 $c_{n-1}/c_n=n/(2(2n-1))$ 与两步比值清分母，问题变成一个明确的多项式恒等式。$n\ge4$ 保证所有分母不为零；证书见阅读版伴随递推章。}
+\end{frame}
+% Manuscript: Corollary 4, parity decomposition
+\begin{frame}{半行和：中间项要单独处理}
+\small
+\[
+b_n=\sum_{k=0}^{\lfloor n/2\rfloor}T(n,k),\qquad S_n=9\cdot2^n-4n-8.
+\]
+\[
+b_n=\begin{cases}S_n/2,&n\text{ 奇},\\(S_n+T(n,n/2))/2,&n\text{ 偶}.\end{cases}
+\]
+\[
+w_{2m}=\frac{9m+5}{m+1}c_m,\quad w_{2m+1}=0,
+\]
+\[
+b_n=\frac92\,2^n-2n-5-(-1)^n+\frac12w_n.
+\]
+$ b_2=(20+10)/2=15$，$b_3=52/2=26$。
+\note{注意行号 $n$ 与行长 $n+1$ 的奇偶相反。奇偶分解归于 Mathar，行和公式由 Stephan 记录、Krause 获署名证明。七项递推分奇偶只需验证两个多项式证书，见附录与阅读版。}
+\end{frame}
+% Manuscript: Verification and availability; references
+\begin{frame}{结论与准确范围}
+\begin{itemize}
+\item 对称性把卷积变成平方和；二项式求和给出闭式。
+\item 中心二项式邻项关系与正确移位给出递推。
+\item 同一结构解释中间项、近中间项与半行和。
+\end{itemize}
+\small
+公开 Lean 定理：A027182 的 $n\ge6$ 递推。\\
+全主定理及伴随推论：原文书面证明。\\
+有限检查截至 $400$ 是论文报告的额外证据；未证明最小阶。\\
+来源：第 4 版，\href{https://doi.org/10.5281/zenodo.23884890}{doi:10.5281/zenodo.23884890}。
+\note{强调完成的数学结果及机制。形式化贡献按阅读版所列共享请求协调，不把一个定理的核验扩大为全论文核验。不要把有限数值检查说成所有下标的证明。}
+\end{frame}
+\appendix
+\section{技术附录}
+% Manuscript: Corollary 4, complete recurrence
+\begin{frame}{附录：半行和的完整递推}
+\small
+\begin{bookresult}{half-row}
+对 $n\ge6$，$\sum_{j=0}^6p_j(n)b_{n-j}+4(-24n^2+196n-365)=0$，其中
+\[
+\begin{aligned}
+p_0&=-(n+2)(3n-20),&p_1&=-(n+1)(3n-11),\\
+p_2&=33n^2-180n-100,&p_3&=15n^2-56n+1,\\
+p_4&=2(-51n^2+313n-208),\\
+p_5&=-12(n-1)(n-4),&p_6&=8(9n-11)(n-5).
+\end{aligned}
+\]
+\end{bookresult}
+\note{$p_j$ 均在同一个 $n$ 处求值，不是 $p_j(n-j)$。指数与交替项消去，奇偶中心项分别由下一页证书消去。完整书面论证保留在阅读版。}
+\end{frame}
+% Manuscript: Corollary 4, equations evencert and oddcert
+\begin{frame}{附录：奇偶证书}
+\footnotesize
+\[
+\begin{aligned}
+E(n)={}&-8(n-3)(n-1)(3n-20)(9n+10)\\
+&+2(n-3)(9n-8)(33n^2-180n-100)\\
+&-n(9n-26)(51n^2-313n+208)\\
+&+n(n-2)(9n-44)(9n-11)=0,\\
+O(n)={}&-4(n-2)(3n-11)(9n+1)\\
+&+(9n-17)(15n^2-56n+1)-3(n-1)^2(9n-35)=0.
+\end{aligned}
+\]
+偶数：$(\mathcal Pw)_n/c_{n/2}=E(n)/(8(n-3)(n-1))$。\\
+奇数：$(\mathcal Pw)_n/c_{(n-1)/2}=O(n)/(4(n-2))$。
+\note{这里 $(\mathcal Pf)_n=\sum_{j=0}^6p_j(n)f_{n-j}$。偶数范围 $n\ge6$，奇数范围 $n\ge7$，因此各分母非零。展开证书为零是代数证明，不是只代入几个数。}
+\end{frame}
+% Manuscript: Bibliography and verification paragraph
+\begin{frame}{附录：来源与贡献}
+\small
+\begin{itemize}
+\item Haobo Ma, Wenlin Zhang，第 4 版，\href{https://doi.org/10.5281/zenodo.23884890}{10.5281/zenodo.23884890}。
+\item Kimberling：A027170 与相关序列；Mathar：2026 年递推与奇偶公式。
+\item Krause：中间及近中间闭式；Stephan：2004 年行和公式。
+\item Bostan, Lairez, Salvy，\emph{Multiple binomial sums}，\href{https://doi.org/10.1016/j.jsc.2016.04.002}{10.1016/j.jsc.2016.04.002}。
+\end{itemize}
+共享请求：\href{https://github.com/the-omega-institute/trureturing-requests/issues/253}{闭式}，\href{https://github.com/the-omega-institute/trureturing-requests/issues/254}{中间项}，\href{https://github.com/the-omega-institute/trureturing-requests/issues/255}{近中间项}，\href{https://github.com/the-omega-institute/trureturing-requests/issues/256}{半行和}。
+\note{贡献者通过共享请求协调，在自己的 fork 中开发并直接向上游 dev 提交聚焦 PR，遵守现有准入与审查规则。保留原数学作者及形式化贡献者的独立归属。}
+\end{frame}
+% Manuscript: Public Lean recurrence and written proof scope (generated ledger)
+\FormalVerification
+\end{document}

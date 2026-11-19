@@ -1,0 +1,66 @@
+{
+  "book": "mathar-a027182-closed-form",
+  "pending_claims": [],
+  "results": {
+    "main-formula": {
+      "claim": "collected:mathar-a027182-closed-form:4:s1",
+      "gids": [],
+      "comparison_verdict": "special case",
+      "compared_public_gid": "D5/S1/Recurrence/MatharA027182SelfConvolution.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "A027182 closed form and full source theorem",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/253"
+      }
+    },
+    "middle-entries": {
+      "claim": "collected:mathar-a027182-closed-form:4:s2",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Middle-entry recurrences for A027171 and A027175",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/254"
+      }
+    },
+    "near-middle": {
+      "claim": "collected:mathar-a027182-closed-form:4:s3",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Near-middle recurrence for A027174",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/255"
+      }
+    },
+    "half-row": {
+      "claim": "collected:mathar-a027182-closed-form:4:s4",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Half-row seven-term recurrence for A027179",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/256"
+      }
+    },
+    "mathar-recurrence": {
+      "claim": "collected:mathar-a027182-closed-form:4:s1",
+      "gids": [
+        "D5/S1/Recurrence/MatharA027182SelfConvolution.result"
+      ],
+      "comparison_verdict": "same",
+      "compared_public_gid": "D5/S1/Recurrence/MatharA027182SelfConvolution.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8"
+    }
+  },
+  "stage": "complete",
+  "titles": {
+    "en": "Proof of Mathar's conjecture on OEIS A027182: a closed form and the six-term recurrence",
+    "zh": "Proof of Mathar's conjecture on OEIS A027182: a closed form and the six-term recurrence"
+  },
+  "version": 4,
+  "work": "mathar-a027182-closed-form"
+}
