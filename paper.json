@@ -2,16 +2,16 @@
   "files": {
     "pdf": {
       "bytes": 84411,
-      "matches_public": null,
+      "matches_public": true,
       "path": "paper.pdf",
-      "public_sha256": null,
+      "public_sha256": "452af97384302ff222fac940759d321ec76bf44e80ddd4e1eca8e78b8bfcab38",
       "sha256": "452af97384302ff222fac940759d321ec76bf44e80ddd4e1eca8e78b8bfcab38"
     },
     "source": {
       "bytes": 16405,
-      "matches_public": null,
+      "matches_public": true,
       "path": "source.archive",
-      "public_sha256": null,
+      "public_sha256": "a36826a45523cdafc39b1f2055e51130f9e6af99908175fa1fb01569ec53e0cf",
       "sha256": "a36826a45523cdafc39b1f2055e51130f9e6af99908175fa1fb01569ec53e0cf"
     }
   },
@@ -40,6 +40,8 @@
     "license": "CC-BY-4.0",
     "msc": [],
     "pdf": {
+      "bytes": 84411,
+      "sha256": "452af97384302ff222fac940759d321ec76bf44e80ddd4e1eca8e78b8bfcab38",
       "url": "/api/v1/collected-papers/mathar-a027182-closed-form/files/pdf?version=4"
     },
     "previous_version": null,
@@ -48,6 +50,8 @@
     "record": "mathar-a027182-closed-form",
     "repository_name": "10.5281-zenodo.23884889",
     "source": {
+      "bytes": 16405,
+      "sha256": "a36826a45523cdafc39b1f2055e51130f9e6af99908175fa1fb01569ec53e0cf",
       "url": "/api/v1/collected-papers/mathar-a027182-closed-form/files/source?version=4"
     },
     "title": "Proof of Mathar's conjecture on OEIS A027182: a closed form and the six-term recurrence",

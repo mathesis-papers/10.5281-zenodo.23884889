@@ -38,9 +38,9 @@
     "manuscript/sequence-prefixes.json": "6f8c6bcab2d355a7a02f0ab80213c3463cbdde18d6718a6942bb216b98577221",
     "manuscript/verification.json": "663538a83f812d725899158fa887724942f94dc635b1c0b638ad9177267ab2c7",
     "manuscript/verify.py": "18bf7cc27a3e7cabada583f1eda55b9c284d1d3a35c459a3dfbb01cfa47ca14f",
-    "paper.json": "2d1ff494b76ff36e2b644eba5a5ee7a7a3d5ea5c1e18cc1a7fc308497212b81c",
+    "paper.json": "bca983cb5c25ffa7aed2838e58a06778a4d7d31df3c2be03bc80d0951ca97f7b",
     "paper.pdf": "452af97384302ff222fac940759d321ec76bf44e80ddd4e1eca8e78b8bfcab38",
     "source.archive": "a36826a45523cdafc39b1f2055e51130f9e6af99908175fa1fb01569ec53e0cf"
   },
-  "snapshot_identity": "6fa0f5afcd827b6499b7796adf9dc5e9b447b0a8828a175d5cbe3afee3d4f288"
+  "snapshot_identity": "65b9887d47729365ea1b4df52fbf81bacf37fe487698083ce5a23d400d382559"
 }
